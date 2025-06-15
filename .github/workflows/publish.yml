@@ -1,0 +1,35 @@
+name: Convert Notebooks and Publish to WordPress
+
+on:
+  push:
+    branches: [ main ]
+    paths: [ 'notebooks/**/*.ipynb' ]
+  workflow_dispatch:
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - uses: actions/checkout@v3
+    
+    - name: Set up Python
+      uses: actions/setup-python@v3
+      with:
+        python-version: '3.9'
+    
+    - name: Install dependencies
+      run: |
+        pip install jupyter nbconvert requests python-frontmatter
+    
+    - name: Convert notebooks to markdown
+      run: |
+        find notebooks -name "*.ipynb" -exec jupyter nbconvert --to markdown {} \;
+    
+    - name: Publish to WordPress
+      env:
+        WP_URL: ${{ secrets.WP_URL }}
+        WP_USERNAME: ${{ secrets.WP_USERNAME }}
+        WP_PASSWORD: ${{ secrets.WP_PASSWORD }}
+      run: |
+        python scripts/publish_to_wp.py
