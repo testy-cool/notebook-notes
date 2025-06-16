@@ -20,7 +20,7 @@ jobs:
     
     - name: Install dependencies
       run: |
-        pip install jupyter nbconvert requests python-frontmatter
+        pip install jupyter nbconvert requests python-frontmatter markdown
     
     - name: Convert notebooks to markdown
       run: |
