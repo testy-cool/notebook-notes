@@ -20,7 +20,8 @@ jobs:
     
     - name: Install dependencies
       run: |
-        pip install jupyter nbconvert requests python-frontmatter markdown
+        python -m pip install --upgrade pip
+        python -m pip install jupyter nbconvert requests python-frontmatter markdown beautifulsoup4
     
     - name: Convert notebooks to markdown
       run: |
