@@ -4,3 +4,4 @@ requests
 python-frontmatter
 markdown
 beautifulsoup4
+nbformat
