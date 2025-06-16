@@ -1,0 +1,6 @@
+jupyter
+nbconvert
+requests
+python-frontmatter
+markdown
+beautifulsoup4
